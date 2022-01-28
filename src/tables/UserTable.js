@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper, Icon, Button, IconButton } from '@mui/material';
+import { Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper, Icon, IconButton } from '@mui/material';
 
 const UserTable = props => (
     <TableContainer component={Paper}>
