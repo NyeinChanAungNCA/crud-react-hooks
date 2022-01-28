@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react'
+import { Container, Grid, Icon, MenuItem, Menu, Snackbar, Alert, Stack, Box, Toolbar, List, CssBaseline, Typography, Divider, IconButton, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import AddUserForm from './forms/AddUserForm'
 import EditUserForm from './forms/EditUserForm'
 import UserTable from './tables/UserTable'
@@ -6,12 +7,12 @@ import UserTable from './tables/UserTable'
 const App = () => {
   // Data
   const usersData = [
-    { id: 1, name: 'John Doe', username: 'johndoe' },
-    { id: 2, name: 'Jackie', username: 'jackie' },
-    { id: 3, name: 'Smith', username: 'smith' },
+    { id: 1, name: 'John Doe', age: '20', gender: 'Male' },
+    { id: 2, name: 'Jackie', age: '21', gender: 'Male' },
+    { id: 3, name: 'Sally', age: '24', gender: 'Female' },
   ]
 
-  const initialFormState = { id: null, name: '', username: '' }
+  const initialFormState = { id: null, name: '', age: '', gender: '' }
 
   // Setting state
   const [users, setUsers] = useState(usersData)
@@ -39,37 +40,31 @@ const App = () => {
   const editRow = user => {
     setEditing(true)
 
-    setCurrentUser({ id: user.id, name: user.name, username: user.username })
+    setCurrentUser({ id: user.id, name: user.name, age: user.age, gender: user.gender })
   }
 
   return (
-    <div className="container">
-      <h1>CRUD App with React Hooks</h1>
-      <div className="flex-row">
-        <div className="flex-large">
+    <Container>
+      <Typography variant='h4' sx={{ fontWeight: 'bold', textAlign: 'center' }} gutterBottom>CRUD Demo</Typography>
+      <Grid container>
+        <Grid item xs={12}>
           {editing ? (
-            <>
-              <h2>Edit user</h2>
-              <EditUserForm
-                editing={editing}
-                setEditing={setEditing}
-                currentUser={currentUser}
-                updateUser={updateUser}
-              />
-            </>
+            <EditUserForm
+              editing={editing}
+              setEditing={setEditing}
+              currentUser={currentUser}
+              updateUser={updateUser}
+            />
           ) : (
-            <>
-              <h2>Add user</h2>
-              <AddUserForm addUser={addUser} />
-            </>
+            <AddUserForm addUser={addUser} />
           )}
-        </div>
-        <div className="flex-large">
-          <h2>View users</h2>
+        </Grid>
+        <Grid item xs={12} sx={{ mt: 3 }}>
+          <Typography variant='h5'>View users</Typography>
           <UserTable users={users} editRow={editRow} deleteUser={deleteUser} />
-        </div>
-      </div>
-    </div>
+        </Grid>
+      </Grid>
+    </Container>
   )
 }
 
