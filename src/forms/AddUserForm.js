@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FormControl, FormLabel, Icon, RadioGroup, FormControlLabel, Radio, Typography, TextField } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
+import context from '../services/context';
 
 const AddUserForm = props => {
     const initialFormState = { id: null, name: '', age: '', gender: '' }
     const [user, setUser] = useState(initialFormState)
     const [loading, setLoading] = useState(false)
+    const onShowSnack = useContext(context)
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -22,6 +24,7 @@ const AddUserForm = props => {
                     setLoading(true)
                     props.addUser(user)
                     setUser(initialFormState)
+                    onShowSnack("Successfully created", 'success')
                     setLoading(false)
                 }}
                 autoComplete='off'

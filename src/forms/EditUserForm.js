@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { FormControl, FormLabel, Icon, RadioGroup, FormControlLabel, Radio, Typography, TextField, Button } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
+import context from '../services/context';
 
 const EditUserForm = props => {
     const [user, setUser] = useState(props.currentUser)
     const [loading, setLoading] = useState(false)
+    const onShowSnack = useContext(context)
 
     useEffect(() => {
         setUser(props.currentUser)
@@ -19,6 +21,7 @@ const EditUserForm = props => {
         event.preventDefault()
         setLoading(true)
         props.updateUser(user.id, user)
+        onShowSnack("Successfully updated", 'success')
         setLoading(false)
     }
 
