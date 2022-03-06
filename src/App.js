@@ -60,7 +60,7 @@ const App = () => {
   return (
     <context.Provider value={onShowSnack}>
       <Container>
-        <Typography variant='h4' sx={{ fontWeight: 'bold', textAlign: 'center' }} gutterBottom>CRUD Demo</Typography>
+        <Typography variant='h4' sx={{ fontWeight: 'bold', textAlign: 'center' }} gutterBottom>React CRUD Demo</Typography>
         <Grid container>
           <Grid item xs={12}>
             {editing ? (
